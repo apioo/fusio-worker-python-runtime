@@ -9,13 +9,13 @@ import pymysql.cursors
 from elasticsearch import Elasticsearch
 from pymongo import MongoClient
 
-from src.generated.about import About
-from src.generated.execute import Execute
-from src.generated.execute_connection import ExecuteConnection
-from src.generated.response import Response
-from src.generated.response_event import ResponseEvent
-from src.generated.response_http import ResponseHTTP
-from src.generated.response_log import ResponseLog
+from generated.about import About
+from generated.execute import Execute
+from generated.execute_connection import ExecuteConnection
+from generated.response import Response
+from generated.response_event import ResponseEvent
+from generated.response_http import ResponseHTTP
+from generated.response_log import ResponseLog
 
 
 class Runtime:
