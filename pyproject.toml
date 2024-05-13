@@ -1,6 +1,6 @@
 [project]
 name = "fusio-worker-runtime"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
   { name="Christoph Kappestein", email="christoph.kappestein@gmail.com" },
 ]
@@ -32,5 +32,5 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["runtime"]
+packages = ["runtime", "runtime.generated"]
 package-dir = {"" = "src"}
