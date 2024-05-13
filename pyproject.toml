@@ -1,0 +1,36 @@
+[project]
+name = "fusio-worker-runtime"
+version = "0.1.0"
+authors = [
+  { name="Christoph Kappestein", email="christoph.kappestein@gmail.com" },
+]
+description = "Fusio worker Python runtime"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Code Generators",
+]
+dependencies = [
+    "httpx >= 0.27",
+    "pydantic >= 2.7.0",
+    "PyMySQL >= 1.0",
+    "psycopg2 >= 2.9",
+    "pymongo >= 3.12",
+    "elasticsearch >= 7.15"
+]
+
+[project.urls]
+Homepage = "https://github.com/apioo/fusio-worker-python-runtime"
+Issues = "https://github.com/apioo/fusio-worker-python-runtime/issues"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["sdkgen"]
+package-dir = {"" = "src"}
