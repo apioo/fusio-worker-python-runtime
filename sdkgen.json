@@ -2,7 +2,7 @@
   "type": "model-python",
   "require": {
     "fusio/worker": {
-      "target": "./src/fusio-worker-runtime/generated"
+      "target": "./src/runtime/generated"
     }
   }
 }
