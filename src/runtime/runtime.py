@@ -5,7 +5,7 @@ from typing import Dict
 
 import httpx
 import psycopg2
-import pymysql.cursors
+import mysql.connector
 from elasticsearch import Elasticsearch
 from pymongo import MongoClient
 
@@ -64,7 +64,7 @@ class Connector:
 
         if connection.type == "Fusio.Adapter.Sql.Connection.Sql":
             if config['type'] == "pdo_mysql":
-                con = pymysql.connect(
+                con = mysql.connector.connect(
                     host=config['host'],
                     user=config['username'],
                     password=config['password'],
@@ -73,9 +73,9 @@ class Connector:
             elif config['type'] == "pdo_pgsql":
                 con = psycopg2.connect(
                     host=config['host'],
-                    database=config['database'],
                     user=config['username'],
-                    password=config['password']
+                    password=config['password'],
+                    database=config['database']
                 )
             else:
                 raise Exception("SQL type is not supported")
