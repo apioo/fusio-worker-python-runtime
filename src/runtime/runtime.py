@@ -1,6 +1,7 @@
 import base64
 import importlib
 import json
+from types import ModuleType
 from typing import Dict
 
 import httpx
@@ -19,6 +20,8 @@ from .generated.response_log import ResponseLog
 
 
 class Runtime:
+    modules: Dict[str, ModuleType] = {}
+
     def get(self):
         about = About()
         about.api_version = "1.0.0"
@@ -31,7 +34,11 @@ class Runtime:
         logger = Logger()
         response_builder = ResponseBuilder()
 
-        module = importlib.import_module(action, package=__name__)
+        if action in self.modules.keys():
+            module = self.modules.get(action)
+        else:
+            module = importlib.import_module(action, package=__name__)
+            self.modules[action] = module
 
         module.handle(execute.request, execute.context, connector, response_builder, dispatcher, logger)
 
@@ -45,6 +52,10 @@ class Runtime:
         result.events = dispatcher.get_events()
         result.logs = logger.get_logs()
         return result
+
+    def clear(self, action: str):
+        if action in self.modules.keys():
+            importlib.reload(self.modules.get(action))
 
 
 class Connector:
