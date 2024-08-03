@@ -40,10 +40,11 @@ class Runtime:
             module = importlib.import_module(action, package=__name__)
             self.modules[action] = module
 
-        module.handle(execute.request, execute.context, connector, response_builder, dispatcher, logger)
+        result = module.handle(execute.request, execute.context, connector, response_builder, dispatcher, logger)
 
-        response = response_builder.get_response()
-        if not response:
+        if isinstance(result, ResponseHTTP):
+            response = result
+        else:
             response = ResponseHTTP()
             response.status_code = 204
 
@@ -180,14 +181,9 @@ class Logger:
 
 
 class ResponseBuilder:
-    def __init__(self):
-        self.response = None
-
-    def build(self, status_code, headers, body):
-        self.response = ResponseHTTP()
-        self.response.status_code = status_code
-        self.response.headers = headers
-        self.response.body = body
-
-    def get_response(self):
-        return self.response
+    def build(self, status_code, headers, body) -> ResponseHTTP:
+        response = ResponseHTTP()
+        response.status_code = status_code
+        response.headers = headers
+        response.body = body
+        return response
