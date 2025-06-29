@@ -5,7 +5,7 @@ from types import ModuleType
 from typing import Dict
 
 import httpx
-import psycopg2
+import psycopg
 import mysql.connector
 from elasticsearch import Elasticsearch
 from pymongo import MongoClient
@@ -83,7 +83,7 @@ class Connector:
                     database=config['database']
                 )
             elif config['type'] == "pdo_pgsql":
-                con = psycopg2.connect(
+                con = psycopg.connect(
                     host=config['host'],
                     user=config['username'],
                     password=config['password'],
