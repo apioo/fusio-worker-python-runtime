@@ -20,7 +20,8 @@ from .generated.response_log import ResponseLog
 
 
 class Runtime:
-    modules: Dict[str, ModuleType] = {}
+    def __init__(self):
+        self.modules: Dict[str, ModuleType] = {}
 
     def get(self):
         about = About()
