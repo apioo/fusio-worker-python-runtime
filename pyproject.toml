@@ -1,6 +1,6 @@
 [project]
 name = "fusio-worker-runtime"
-version = "0.2.0"
+version = "0.2.1"
 authors = [
   { name="Christoph Kappestein", email="christoph.kappestein@gmail.com" },
 ]

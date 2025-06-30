@@ -29,6 +29,10 @@ class Runtime:
         about.language = "python"
         return about
 
+    def reload(self, action: str):
+        if action in self.modules.keys():
+            self.modules[action] = importlib.reload(self.modules.get(action))
+
     def run(self, action: str, execute: Execute):
         connector = Connector(execute.connections)
         dispatcher = Dispatcher()
@@ -54,10 +58,6 @@ class Runtime:
         result.events = dispatcher.get_events()
         result.logs = logger.get_logs()
         return result
-
-    def clear(self, action: str):
-        if action in self.modules.keys():
-            importlib.reload(self.modules.get(action))
 
 
 class Connector:
